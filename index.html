@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Planner</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+</head>
+
+<body>
+
+    <div class="app" id="appRoot">
+        <div class="sidebar">
+            <div class="sb-head">
+                <h1>Life Planner</h1>
+                <p id="todayLabel"></p>
+            </div>
+            <div class="nav on" onclick="go('dash',this)"><i class="ti ti-layout-dashboard"></i> Dashboard</div>
+            <div class="nav" onclick="go('goals',this)"><i class="ti ti-target"></i> Goals</div>
+            <div class="nav" onclick="go('tasks',this)"><i class="ti ti-checkbox"></i> Daily tasks</div>
+            <div class="nav" onclick="go('miles',this)"><i class="ti ti-flag"></i> Milestones</div>
+            <div class="nav" onclick="go('journal',this)"><i class="ti ti-notebook"></i> Journal</div>
+        </div>
+
+        <div class="main">
+
+            <!-- DASHBOARD -->
+            <div class="sec on" id="sec-dash">
+                <p class="ptitle">Good <span id="greeting"></span> ✨</p>
+                <p class="psub">Your life at a glance.</p>
+                <div class="mgrid">
+                    <div class="mc">
+                        <div class="lbl">Goals</div>
+                        <div class="val" id="dm-goals">0</div>
+                        <div class="sub" id="dm-goals-s"></div>
+                    </div>
+                    <div class="mc">
+                        <div class="lbl">Tasks today</div>
+                        <div class="val" id="dm-tasks">0</div>
+                        <div class="sub" id="dm-tasks-s"></div>
+                    </div>
+                    <div class="mc">
+                        <div class="lbl">Journal streak</div>
+                        <div class="val" id="dm-streak">0</div>
+                        <div class="sub">days</div>
+                    </div>
+                    <div class="mc">
+                        <div class="lbl">Milestones</div>
+                        <div class="val" id="dm-miles">0</div>
+                        <div class="sub" id="dm-miles-s"></div>
+                    </div>
+                </div>
+                <div class="twocol">
+                    <div class="card">
+                        <div class="ct">Top goals</div>
+                        <div id="dash-goals"></div>
+                    </div>
+                    <div class="card">
+                        <div class="ct">Today's tasks</div>
+                        <div id="dash-tasks"></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="ct">Journal streak — last 21 days</div>
+                    <div class="streakgrid" id="streakGrid"></div>
+                </div>
+            </div>
+
+            <!-- GOALS -->
+            <div class="sec" id="sec-goals">
+                <p class="ptitle">Goals</p>
+                <p class="psub">Track your long-term ambitions.</p>
+                <div class="card" id="goals-list"></div>
+                <button class="addbtn" onclick="openModal('goal')"><i class="ti ti-plus"></i> Add goal</button>
+            </div>
+
+            <!-- TASKS -->
+            <div class="sec" id="sec-tasks">
+                <p class="ptitle">Daily tasks</p>
+                <p class="psub" id="tasks-date"></p>
+                <div class="card" id="tasks-list"></div>
+                <button class="addbtn" onclick="openModal('task')"><i class="ti ti-plus"></i> Add task</button>
+            </div>
+
+            <!-- MILESTONES -->
+            <div class="sec" id="sec-miles">
+                <p class="ptitle">Milestones</p>
+                <p class="psub">Key moments on your journey.</p>
+                <div class="card">
+                    <div class="ct">Upcoming <span class="bdg bp" id="miles-count"></span></div>
+                    <div id="miles-upcoming"></div>
+                </div>
+                <div class="card">
+                    <div class="ct">Achieved</div>
+                    <div id="miles-done"></div>
+                </div>
+                <button class="addbtn" onclick="openModal('milestone')"><i class="ti ti-plus"></i> Add
+                    milestone</button>
+            </div>
+
+            <!-- JOURNAL -->
+            <div class="sec" id="sec-journal">
+                <p class="ptitle">Journal</p>
+                <p class="psub">Reflect on your day.</p>
+                <div class="card">
+                    <div class="ct">How are you feeling?</div>
+                    <div class="moodr" id="moodRow"></div>
+                    <textarea id="jtxt" placeholder="What's on your mind? What did you accomplish today?"></textarea>
+                    <button class="sbtn" onclick="saveJournal()"><i class="ti ti-check"></i> Save entry</button>
+                </div>
+                <div class="card">
+                    <div class="ct">Past entries</div>
+                    <div id="journal-list"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- MODAL -->
+        <div class="modal-bg" id="modalBg" onclick="handleBgClick(event)">
+            <div class="modal" id="modalBox"></div>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>
